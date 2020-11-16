@@ -1,12 +1,13 @@
-FROM sensu/sensu-ruby-runtime-2.4.4-centos6:latest as builder
+FROM sensu/sensu-ruby-runtime-2.4.4-centos8:latest as builder
 ARG ASSET_GEM
 ARG GIT_REF
 ARG GIT_REPO
 WORKDIR /assets/build/
-RUN yum install -y git
-RUN yum install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-6-x86_64/pgdg-redhat-repo-latest.noarch.rpm
-RUN yum install -y postgresql96 postgresql96-libs postgresql96-devel
-ENV CONFIGURE_ARGS="with-pg-config=/usr/pgsql-9.6/bin/pg_config"
+RUN dnf install -y git
+RUN dnf install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm
+RUN dnf -qy module disable postgresql
+RUN dnf install -y postgresql12 postgresql12-libs postgresql12-devel
+ENV CONFIGURE_ARGS="with-pg-config=/usr/pgsql-12/bin/pg_config"
 RUN \
   gem install --no-ri --no-doc bundler && \
   printf "source 'https://rubygems.org'\n\ngem \"%s\", :git => \"%s\" , :ref => \"%s\"\n" ${ASSET_GEM} ${GIT_REPO} ${GIT_REF}| tee Gemfile

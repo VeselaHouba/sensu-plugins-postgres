@@ -5,6 +5,9 @@ This CHANGELOG follows the format listed [here](https://github.com/sensu-plugins
 
 ## [Unreleased]
 ### Changes
+- Switched centos builds from postgres 9.5 to 12 (@VeselaHouba)
+- Added build for centos 8 (@VeselaHouba)
+- Fixed builds for alpine & centos containers (@VeselaHouba)
 - Disabled sting freeze for check-postgres-query.rb
 - Updated development dependency to bundler ~> 2.1
 - Updated development dependency to rake ~> 13.0 
