@@ -5,6 +5,7 @@ This CHANGELOG follows the format listed [here](https://github.com/sensu-plugins
 
 ## [Unreleased]
 ### Changes
+- Disabled sting freeze for check-postgres-query.rb
 - Updated development dependency to bundler ~> 2.1
 - Updated development dependency to rake ~> 13.0 
 - Updated development dependency to test-kitchen ~> 1.25.0 
